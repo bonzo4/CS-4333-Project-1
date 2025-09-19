@@ -1,5 +1,7 @@
 #include <iostream>
 #include "handlers/handlers.hpp"
+#include "handlers/server/server.hpp"
+#include "handlers/client/client.hpp"
 
 enum class Mode { CLIENT, SERVER, AUTO, HELP };
 
