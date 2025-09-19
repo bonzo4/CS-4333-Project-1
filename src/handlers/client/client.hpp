@@ -3,4 +3,4 @@
 
 void handle_client(const char* hostname, int port);
 
-#endif // CLIENT_HPP
+#endif
