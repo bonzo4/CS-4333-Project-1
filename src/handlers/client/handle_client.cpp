@@ -12,8 +12,11 @@ void handle_client(const char* hostname, int port) {
     serverAddress.sin_port = htons(port);
     serverAddress.sin_addr.s_addr = INADDR_ANY;
     
-    connect(client_socket, (struct sockaddr*)&serverAddress,
-            sizeof(serverAddress));
+    if (connect(client_socket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0) {
+        std::cerr << "Error: Unable to connect to server." << std::endl;
+        close(client_socket);
+        throw std::runtime_error("Connection failed");
+    }
 
     const char* message = "Hello, server!";
     send(client_socket, message, strlen(message), 0);
