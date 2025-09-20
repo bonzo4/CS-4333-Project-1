@@ -15,7 +15,10 @@ void handle_server(int port)
     serverAddress.sin_port = htons(port);
     serverAddress.sin_addr.s_addr = INADDR_ANY;
 
-    bind(server_socket, (struct sockaddr*)&serverAddress, sizeof(serverAddress));
+    if (bind(server_socket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0) {
+        close(server_socket);
+        throw std::runtime_error("Server unable to listen on specified port");
+    }
 
     listen(server_socket, 5);
 
