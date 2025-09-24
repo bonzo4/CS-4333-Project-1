@@ -1,8 +1,8 @@
-#include <iostream>
-#include "client/client.hpp"
-#include "server/server.hpp"
+#include "handlers.hpp"
 
-void handle_auto(const char* hostname, int port) {
+#include <iostream>
+
+void handle_auto(std::string hostname, int port) {
     try {
         std::cout << "Running in client mode..." << std::endl;
         handle_client(hostname, port);
