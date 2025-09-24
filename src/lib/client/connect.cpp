@@ -10,13 +10,14 @@ void Client::connect_to_server() {
     serverAddress.sin_port = htons(port);
 
     struct hostent* server = gethostbyname(hostname.c_str());
+    
     if (server == nullptr) {
-        throw std::runtime_error("Host not found");
+        throw runtime_error("Host not found");
     }
 
-    std::memcpy(&serverAddress.sin_addr, server->h_addr, server->h_length);
+    memcpy(&serverAddress.sin_addr, server->h_addr, server->h_length);
         
     if (connect(client_socket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0){
-        throw std::runtime_error("Client unable to communicate with server");
+        throw runtime_error("Client unable to communicate with server");
     }
 }

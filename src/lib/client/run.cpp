@@ -5,6 +5,6 @@
 void Client::run() {
     connect_to_server();
 
-    const std::string message = "Hello, server!";
+    const string message = "Hello, server!";
     send(client_socket, message.c_str(), message.size(), 0);
 }

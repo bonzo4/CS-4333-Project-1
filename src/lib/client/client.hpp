@@ -4,9 +4,11 @@
 
 #include <string>
 
+using namespace std;
+
 class Client {
     public:
-        Client(std::string hostname, int port);
+        Client(const string& hostname, int port);
         ~Client();
         void run();
     private:

@@ -1,6 +1,8 @@
 #ifndef SERVER_HPP
 #define SERVER_HPP
 
+using namespace std;
+
 class Server {
     public:
         Server(int port);

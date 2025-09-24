@@ -10,6 +10,6 @@ void Server::bind_socket() {
     serverAddress.sin_addr.s_addr = INADDR_ANY;
 
     if (bind(server_socket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0) {
-        throw std::runtime_error("Server unable to listen on specified port");
+        throw runtime_error("Server unable to listen on specified port");
     }
 }
