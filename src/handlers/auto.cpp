@@ -1,7 +1,5 @@
 #include "handlers.hpp"
 
-
-
 void handle_auto(const string& hostname, int port) {
     try {
         cout << "[INFO] Running in auto mode..." << endl;

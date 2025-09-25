@@ -29,6 +29,8 @@ class Client {
         fd_set client_fds;
 
         void connect_to_server();
+        bool handle_user_input();
+        bool handle_server_message();
 };
 
 #endif // CLIENT_HPP

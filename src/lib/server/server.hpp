@@ -32,6 +32,8 @@ class Server {
 
         void bind_to_port();
         void accept_connections();
+        bool handle_client_message();
+        bool handle_user_input();
 };
 
 #endif // SERVER_HPP
