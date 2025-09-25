@@ -1,10 +1,11 @@
 #include "client.hpp"
 
 #include <sys/socket.h>
+#include <unistd.h>
+#include <iostream>
 
 void Client::run() {
     connect_to_server();
 
-    const string message = "Hello, server!";
-    send(client_socket, message.c_str(), message.size(), 0);
+    cout << "[INFO] Connected to server." << endl;
 }

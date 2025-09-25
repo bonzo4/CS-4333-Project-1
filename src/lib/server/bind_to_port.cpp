@@ -3,7 +3,7 @@
 #include <iostream>
 #include <netinet/in.h>
 
-void Server::bind_socket() {
+void Server::bind_to_port() {
     sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = htons(port);

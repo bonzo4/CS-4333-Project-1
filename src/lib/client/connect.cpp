@@ -17,7 +17,7 @@ void Client::connect_to_server() {
 
     memcpy(&serverAddress.sin_addr, server->h_addr, server->h_length);
         
-    if (connect(client_socket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0){
+    if (connect(server_socket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0){
         throw runtime_error("Client unable to communicate with server");
     }
 }

@@ -1,18 +1,15 @@
 #include "server.hpp"
 
+#include <sys/select.h>
+#include <unistd.h>
 #include <iostream>
-#include <sys/socket.h>
-
-using namespace std;
 
 void Server::run() {
-    bind_socket();
+    bind_to_port();
 
-    listen(server_socket, 5);
+    cout << "[INFO] Server listening on port " << port << "..." << endl;
 
-    int client_socket = accept(server_socket, nullptr, nullptr);
+    accept_connections();
 
-    char buffer[1024] = { 0 };
-    recv(client_socket, buffer, sizeof(buffer), 0);
-    cout << "Message from client: " << buffer << endl;
+    cout << "[INFO] Client connected." << endl;
 }

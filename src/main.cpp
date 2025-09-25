@@ -2,9 +2,7 @@
 #include "handlers/handlers.hpp"
 #include "utils/utils.hpp"
 
-using namespace std;
-
-int main(int argc, char* argv[]) {
+void run_app(int argc, char* argv[]) {
     Config config;
     parse_args(argc, argv, config);
 
@@ -22,4 +20,15 @@ int main(int argc, char* argv[]) {
             handle_help(argv[0]);
             break;
     }
+}
+
+int main(int argc, char* argv[]) {
+    try {
+        run_app(argc, argv);
+    } catch (const exception& e) {
+        cerr << "[ERROR] " << e.what() << endl;
+        cout << "[INFO] Exiting..." << endl;
+        return EXIT_FAILURE;
+    }
+    return EXIT_SUCCESS;
 }
