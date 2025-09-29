@@ -10,44 +10,41 @@ void parse_args(int argc, char* argv[], Config& config) {
 
     bool is_mode_set = false;
 
+    auto set_mode = [&](Mode mode) {
+        if (is_mode_set) {
+            throw std::invalid_argument("Multiple modes specified");
+        }
+        config.mode = mode;
+        is_mode_set = true;
+    };
+
     for (int i = 1; i < argc; ++i) {
         string arg = argv[i];
         if (arg == "-h") {
-            if (is_mode_set) {
-                throw invalid_argument("Multiple modes specified");
-            }
-            config.mode = Mode::CLIENT;
-            is_mode_set = true;
+            set_mode(Mode::CLIENT);
             if (i + 1 < argc && argv[i + 1][0] != '-') {
                 config.hostname = argv[++i];
             }
         } else if (arg == "-s") {
-            if (is_mode_set) {
-                throw invalid_argument("Multiple modes specified");
-            }
-            config.mode = Mode::SERVER;
-            is_mode_set = true;
+            set_mode(Mode::SERVER);
         } else if (arg == "-a") {
-            if (is_mode_set) {
-                throw invalid_argument("Multiple modes specified");
-            }
-            config.mode = Mode::AUTO;
-            is_mode_set = true;
+            set_mode(Mode::AUTO);
             if (i + 1 < argc && argv[i + 1][0] != '-') {
                 config.hostname = argv[++i];
             }
         } else if (arg == "-p") {
-            if (i + 1 < argc && argv[i + 1][0] != '-') {
-                string portStr = argv[i + 1];
-                if (all_of(portStr.begin(), portStr.end(), ::isdigit)) {
-                    config.port = stoi(portStr);
-                    ++i;
-                } else {
-                    throw invalid_argument("Port must be a number");
-                }
-            } else {
+            if (argv[i + 1][0] == '-' || i + 1 >= argc) {
                 throw invalid_argument("Port number not specified");
+            }   
+
+            string portStr = argv[i + 1];
+            
+            if (!all_of(portStr.begin(), portStr.end(), ::isdigit)) {
+                throw invalid_argument("Port must be a number");
             }
+
+            config.port = stoi(portStr);
+            ++i;
         } else if (arg == "--help") {
             config.mode = Mode::HELP;
             break;
