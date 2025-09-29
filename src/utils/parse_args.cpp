@@ -23,14 +23,14 @@ void parse_args(int argc, char* argv[], Config& config) {
         if (arg == "-h") {
             set_mode(Mode::CLIENT);
             if (i + 1 < argc && argv[i + 1][0] != '-') {
-                config.hostname = argv[++i];
+                config.hostname = (argv[++i] == "localhost") ? "127.0.0.1" : argv[i];
             }
         } else if (arg == "-s") {
             set_mode(Mode::SERVER);
         } else if (arg == "-a") {
             set_mode(Mode::AUTO);
             if (i + 1 < argc && argv[i + 1][0] != '-') {
-                config.hostname = argv[++i];
+                config.hostname = (argv[++i] == "localhost") ? "127.0.0.1" : argv[i];
             }
         } else if (arg == "-p") {
             if (argv[i + 1][0] == '-' || i + 1 >= argc) {

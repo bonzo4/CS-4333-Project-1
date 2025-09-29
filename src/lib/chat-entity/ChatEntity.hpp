@@ -31,19 +31,6 @@ class ChatEntity {
             }
         }
 
-        void stop() {
-            if (socket_fd >= 0) {
-                close(socket_fd);
-                socket_fd = -1;
-            }
-            if (remote_socket_fd >= 0) {
-                close(remote_socket_fd);
-                remote_socket_fd = -1;
-            }
-        }
-
-        void restore_terminal();
-
         virtual void run() = 0;
 
     protected:
@@ -66,9 +53,12 @@ class ChatEntity {
         bool handle_remote_message();
         bool handle_user_input();
         void bind_to_port();
+
         void setup_terminal();
         void save_and_clear_input();
         void restore_input();
+        void restore_terminal();
+
         Command process_command(const string& input);
 };
 

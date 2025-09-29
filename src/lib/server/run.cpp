@@ -27,12 +27,7 @@ void Server::run() {
         FD_SET(STDIN_FILENO, &fds);
 
         int max_fd = max(socket_fd, max(remote_socket_fd, STDIN_FILENO));
-        int activity = select(max_fd + 1, &fds, nullptr, nullptr, nullptr);
-
-        if (activity < 0) {
-            restore_terminal();
-            throw runtime_error("Select error on server");
-        }
+        select(max_fd + 1, &fds, nullptr, nullptr, nullptr);
 
         if (FD_ISSET(socket_fd, &fds)) {
             accept_connections();
