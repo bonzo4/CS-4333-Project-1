@@ -1,14 +1,12 @@
-#include "server.hpp"
+#include "Server.hpp"
 
 #include <sys/socket.h>
 #include <iostream>
 
 void Server::accept_connections() {
-    listen(server_socket, 1);
+    remote_socket_fd = accept(socket_fd, nullptr, nullptr);
 
-    client_socket = accept(server_socket, nullptr, nullptr);
-
-    if (client_socket < 0) {
+    if (remote_socket_fd < 0) {
         throw runtime_error("Failed to accept connection");
     }
     is_client_connected = true;

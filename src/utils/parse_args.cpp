@@ -5,7 +5,7 @@
 
 void parse_args(int argc, char* argv[], Config& config) {
     config.mode = Mode::HELP;
-    config.hostname = "localhost";
+    config.hostname = "127.0.0.1";
     config.port = 12987;
 
     bool is_mode_set = false;
