@@ -36,15 +36,15 @@ void Client::run() {
             throw runtime_error("Select error");
         }
 
-        if (FD_ISSET(STDIN_FILENO, &fds)) {
-            if (!handle_user_input()) {
+        if (is_connected && FD_ISSET(remote_socket_fd, &fds)) {
+            if (!handle_remote_message()) {
                 restore_terminal();
-                break;
+                is_connected = false;
             }
         }
 
-        if (FD_ISSET(remote_socket_fd, &fds)) {
-            if (!handle_remote_message()) {
+        if (FD_ISSET(STDIN_FILENO, &fds)) {
+            if (!handle_user_input()) {
                 restore_terminal();
                 break;
             }
