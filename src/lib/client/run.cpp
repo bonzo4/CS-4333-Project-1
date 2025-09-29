@@ -33,7 +33,6 @@ void Client::run() {
 
         if (is_connected && FD_ISSET(remote_socket_fd, &fds)) {
             if (!handle_remote_message()) {
-                restore_terminal();
                 is_connected = false;
             }
         }
