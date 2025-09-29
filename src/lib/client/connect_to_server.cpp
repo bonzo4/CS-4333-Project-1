@@ -18,7 +18,6 @@ void Client::connect_to_server() {
 
     memcpy(&serverAddress.sin_addr, server->h_addr, server->h_length);
 
-    // Set socket timeout for connection (5 seconds)
     struct timeval timeout;
     timeout.tv_sec = 5;
     timeout.tv_usec = 0;
