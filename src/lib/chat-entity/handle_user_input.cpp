@@ -18,6 +18,7 @@ bool ChatEntity::handle_user_input() {
         
         if (current_input.empty()) {
             cout << "> ";
+            cout.flush();
             input_in_progress = true;
             return true;
         }
@@ -34,6 +35,7 @@ bool ChatEntity::handle_user_input() {
         
         current_input.clear();
         cout << "\n> ";
+        cout.flush();
         input_in_progress = true;
     } else if (ch == 127 || ch == '\b') {
         if (!current_input.empty()) {
@@ -44,6 +46,7 @@ bool ChatEntity::handle_user_input() {
     } else if (ch >= 32 && ch <= 126) {
         if (!input_in_progress) {
             cout << "> ";
+            cout.flush();
             input_in_progress = true;
         }
         current_input += ch;
