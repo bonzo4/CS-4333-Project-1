@@ -21,6 +21,9 @@ class Client : public ChatEntity {
         void run() override;
 
     private:
+
+        bool is_connected = false;
+
         void connect_to_server();
         void handle_status_command() override;
 };
