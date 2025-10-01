@@ -17,6 +17,7 @@ bool ChatEntity::handle_user_input() {
         input_in_progress = false;
         
         if (current_input.empty()) {
+            cout << "[Warning] Empty input, please type a message or command." << endl;
             cout << "> ";
             cout.flush();
             input_in_progress = true;
