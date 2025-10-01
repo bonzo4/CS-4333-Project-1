@@ -10,7 +10,7 @@ void ChatEntity::bind_to_port() {
     chatAddress.sin_addr.s_addr = INADDR_ANY;
 
     if (bind(socket_fd, (struct sockaddr*)&chatAddress, sizeof(chatAddress)) < 0) {
-        throw runtime_error("Server unable to listen on specified port");
+        throw runtime_error("Unable to bind to port " + to_string(port));
     }
 
     if (port == 0) {
